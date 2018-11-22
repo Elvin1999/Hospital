@@ -88,6 +88,15 @@ namespace ConsoleApp25
         Section Pediatriya = new Section();
         Section Travmatologiya = new Section();
         Section Stamotologiya = new Section();
+        public bool CheckPersonRegistration(User person)
+        {
+            var checkName = string.IsNullOrEmpty(person.Name);
+            var checkSurname = string.IsNullOrEmpty(person.Surname);
+            var checkMail = person.Email.Length;
+            var checkPhoneNumber=int.TryParse(person.PhoneNumber, out int result);
+            if (!checkName && !checkSurname && checkMail > 10 && checkPhoneNumber) return true;
+            return false;
+        }
         /// <summary>
         /// All things happen here.
         /// </summary>
