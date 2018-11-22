@@ -82,6 +82,9 @@ namespace ConsoleApp25
         Doctor Elvin = new Doctor("Elvin", "Camalzade", 20);
         Doctor Samir = new Doctor("Samir", "Osmanli", 2);
         Doctor Anar = new Doctor("Anar", "Ehmedov", 1);
+        Doctor John = new Doctor("John", "Jane", 1);
+        Doctor Ismayil = new Doctor("Ismayil", "Ismayilli", 1);
+        Doctor Tofiq = new Doctor("Tofiq", "Tofiq", 1);
         Section Pediatriya = new Section();
         Section Travmatologiya = new Section();
         Section Stamotologiya = new Section();
@@ -94,9 +97,9 @@ namespace ConsoleApp25
             User person = new User();
             userlist.Add(person);
             Pediatriya.doctors.Add(Elvin); Travmatologiya.doctors.Add(Samir); Stamotologiya.doctors.Add(Anar);
+            Pediatriya.doctors.Add(John); Travmatologiya.doctors.Add(Ismayil); Stamotologiya.doctors.Add(Tofiq);
             while (true)
             {
-                //Console.Clear();
                 ShowSectionOfHospital();
                 Console.Write("Select - >");
                 int selection = Convert.ToInt32(Console.ReadLine()); bool boolselection;
@@ -132,14 +135,18 @@ namespace ConsoleApp25
                 if (boolselection)
                 {
                     int selecttime;
-                    Console.Write("Please write line of Doctor -> (for example 1,2,3) ->");
+                    Console.WriteLine("=================================================");
+                    Console.WriteLine("Please write line of Doctor -> (for example 1,2,3) ->");
+                    Console.WriteLine("=================================================");
                     int line = Convert.ToInt32(Console.ReadLine());
                     --line;
                     if (selection == 1)//Pediatriya
                     {
                         do
                         {
+                            Console.WriteLine("===================================");
                             Console.WriteLine("Select time section -> |1| |2| |3|");
+                            Console.WriteLine("===================================");
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
                         } while (Pediatriya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
@@ -152,7 +159,9 @@ namespace ConsoleApp25
                     {
                         do
                         {
+                            Console.WriteLine("===================================");
                             Console.WriteLine("Select time section -> |1| |2| |3|");
+                            Console.WriteLine("===================================");
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
                         } while (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
@@ -165,7 +174,9 @@ namespace ConsoleApp25
                     {
                         do
                         {
+                            Console.WriteLine("===================================");
                             Console.WriteLine("Select time section -> |1| |2| |3|");
+                            Console.WriteLine("===================================");
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
                         } while (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
