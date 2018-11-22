@@ -142,46 +142,67 @@ namespace ConsoleApp25
                     --line;
                     if (selection == 1)//Pediatriya
                     {
+                        string time;
                         do
                         {
+
                             Console.WriteLine("===================================");
                             Console.WriteLine("Select time section -> |1| |2| |3|");
                             Console.WriteLine("===================================");
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
+                            time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
+                            if (Pediatriya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
+                            {
+                                Console.WriteLine($"{Pediatriya.doctors[line].Name} hekimin {time} ucun olan tarixinin qabagina rezerv olunub");
+                            }
                         } while (Pediatriya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
                         Console.ForegroundColor = ConsoleColor.Green;
-                        string time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
+                        time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
                         Pediatriya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
                         Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Pediatriya.doctors[line].Name} hekimin qebuluna yazildiniz");
                     }
                     else if (selection == 2)
                     {
+                        string time;
                         do
                         {
+
                             Console.WriteLine("===================================");
                             Console.WriteLine("Select time section -> |1| |2| |3|");
                             Console.WriteLine("===================================");
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
+                            time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
+                            if (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
+                            {
+                                Console.WriteLine($"{Travmatologiya.doctors[line].Name} hekimin {time} ucun olan tarixinin qabagina rezerv olunub");
+                            }
                         } while (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
                         Console.ForegroundColor = ConsoleColor.Green;
-                        string time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
+                        time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
                         Travmatologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
                         Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Travmatologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
                     }
                     else if (selection == 3)
                     {
+                        string time;
                         do
                         {
+                            
                             Console.WriteLine("===================================");
                             Console.WriteLine("Select time section -> |1| |2| |3|");
                             Console.WriteLine("===================================");
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
+                            time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
+                            if (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
+                            {
+                                Console.WriteLine($"{Stamotologiya.doctors[line].Name} hekimin {time} ucun olan tarixinin qabagina rezerv olunub");
+                            }
                         } while (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
                         Console.ForegroundColor = ConsoleColor.Green;
-                        string time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
+                         time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
                         Stamotologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
                         Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Stamotologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
                     }
