@@ -223,7 +223,7 @@ namespace ConsoleApp25
             Console.WriteLine("Stamotologiya 3");
             Console.WriteLine("========================");
         }
-        public void ShowTimeTableManagement()
+        public void ShowTimeTableManagement()   
         {
             Console.WriteLine("===================================");
             Console.WriteLine("Select time section -> |1| |2| |3|");
