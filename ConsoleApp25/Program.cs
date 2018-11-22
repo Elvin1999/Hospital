@@ -60,7 +60,7 @@ namespace ConsoleApp25
             Console.Write("\t\t\t\t\tPhone Number ->");
             PhoneNumber = Console.ReadLine();
             Console.WriteLine("\t\t\t\t\t================================");
-            System.Threading.Thread.Sleep(2000);Console.Clear();
+            System.Threading.Thread.Sleep(2000); Console.Clear();
         }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
@@ -70,8 +70,10 @@ namespace ConsoleApp25
         public List<Doctor> doctors = new List<Doctor>();
         public void ShowAllDoctors()
         {
+            int count = 0;
             foreach (var item in doctors)
             {
+                Console.WriteLine($" ({++count}) LINE");
                 item.ShowDoctors();
             }
         }
@@ -93,7 +95,7 @@ namespace ConsoleApp25
             var checkName = string.IsNullOrEmpty(person.Name);
             var checkSurname = string.IsNullOrEmpty(person.Surname);
             var checkMail = person.Email.Length;
-            var checkPhoneNumber=int.TryParse(person.PhoneNumber, out int result);
+            var checkPhoneNumber = int.TryParse(person.PhoneNumber, out int result);
             if (!checkName && !checkSurname && checkMail > 10 && checkPhoneNumber) return true;
             return false;
         }
@@ -145,7 +147,7 @@ namespace ConsoleApp25
                 {
                     int selecttime;
                     Console.WriteLine("=================================================");
-                    Console.WriteLine("Please write line of Doctor -> (for example 1,2,3) ->");
+                    Console.WriteLine("Please write LINE of Doctor -> (for example 1,2,3) ->");
                     Console.WriteLine("=================================================");
                     int line = Convert.ToInt32(Console.ReadLine());
                     --line;
@@ -154,14 +156,13 @@ namespace ConsoleApp25
                         string time;
                         do
                         {
-
                             ShowTimeTableManagement();
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
                             time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
                             if (Pediatriya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
                             {
-                                Console.WriteLine($"{Pediatriya.doctors[line].Name} hekimin {time} ucun olan tarixinin qabagina rezerv olunub");
+                                Console.WriteLine($"{Pediatriya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
                             }
                         } while (Pediatriya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
                         Console.ForegroundColor = ConsoleColor.Green;
@@ -181,7 +182,7 @@ namespace ConsoleApp25
                             time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
                             if (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
                             {
-                                Console.WriteLine($"{Travmatologiya.doctors[line].Name} hekimin {time} ucun olan tarixinin qabagina rezerv olunub");
+                                Console.WriteLine($"{Travmatologiya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
                             }
                         } while (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
                         Console.ForegroundColor = ConsoleColor.Green;
@@ -194,18 +195,17 @@ namespace ConsoleApp25
                         string time;
                         do
                         {
-
                             ShowTimeTableManagement();
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
                             time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
                             if (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
                             {
-                                Console.WriteLine($"{Stamotologiya.doctors[line].Name} hekimin {time} ucun olan tarixinin qabagina rezerv olunub");
+                                Console.WriteLine($"{Stamotologiya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
                             }
                         } while (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
                         Console.ForegroundColor = ConsoleColor.Green;
-                         time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
+                        time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
                         Stamotologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
                         Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Stamotologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
                     }
@@ -234,7 +234,6 @@ namespace ConsoleApp25
     {
         static void Main(string[] args)
         {
-            
             Action action = new Action();
             action.Run();
             Console.WriteLine();
