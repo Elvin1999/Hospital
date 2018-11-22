@@ -32,7 +32,7 @@ namespace ConsoleApp25
             Console.WriteLine("Worktime -> "); int count = 0; int checkcount = 0;
             foreach (var item in WorkTime)
             {
-                var isFull = item.Contains("Full");
+                var isFull = item.Contains("Reserved");
                 if (isFull)
                 {
                     Console.ForegroundColor = ConsoleColor.Red; checkcount++;
@@ -48,18 +48,19 @@ namespace ConsoleApp25
         public User()
         {
             Console.WriteLine("\n\n\n\n\n\n\n\n\t\t\t\t\t================================");
-            Console.Write("\n\n\n\n\n\n\n\n\t\t\t\t\tName ->");
+            Console.Write("\t\t\t\t\tName ->");
             Name = Console.ReadLine();
-            Console.WriteLine("\n\n\n\n\n\n\n\n\t\t\t\t\t================================");
-            Console.Write("\n\n\n\n\n\n\n\n\t\t\t\t\tSurname ->");
+            Console.WriteLine("\t\t\t\t\t================================");
+            Console.Write("\t\t\t\t\tSurname ->");
             Surname = Console.ReadLine();
-            Console.WriteLine("\n\n\n\n\n\n\n\n\t\t\t\t\t================================");
-            Console.Write("\n\n\n\n\n\n\n\n\t\t\t\t\tEmail ->");
+            Console.WriteLine("\t\t\t\t\t================================");
+            Console.Write("\t\t\t\t\tEmail ->");
             Email = Console.ReadLine();
-            Console.WriteLine("\n\n\n\n\n\n\n\n\t\t\t\t\t================================");
-            Console.Write("\n\n\n\n\n\n\n\n\t\t\t\t\tPhone Number ->");
+            Console.WriteLine("\t\t\t\t\t================================");
+            Console.Write("\t\t\t\t\tPhone Number ->");
             PhoneNumber = Console.ReadLine();
-            Console.WriteLine("\n\n\n\n\n\n\n\n\t\t\t\t\t================================");
+            Console.WriteLine("\t\t\t\t\t================================");
+            System.Threading.Thread.Sleep(2000);Console.Clear();
         }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
@@ -141,10 +142,10 @@ namespace ConsoleApp25
                             Console.WriteLine("Select time section -> |1| |2| |3|");
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
-                        } while (Pediatriya.doctors[line].WorkTime[selecttime - 1].Contains("Full"));
+                        } while (Pediatriya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
                         Console.ForegroundColor = ConsoleColor.Green;
                         string time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
-                        Pediatriya.doctors[line].WorkTime[selecttime - 1] += " Full";
+                        Pediatriya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
                         Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Pediatriya.doctors[line].Name} hekimin qebuluna yazildiniz");
                     }
                     else if (selection == 2)
@@ -154,10 +155,10 @@ namespace ConsoleApp25
                             Console.WriteLine("Select time section -> |1| |2| |3|");
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
-                        } while (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Full"));
+                        } while (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
                         Console.ForegroundColor = ConsoleColor.Green;
                         string time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
-                        Travmatologiya.doctors[line].WorkTime[selecttime - 1] += " Full";
+                        Travmatologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
                         Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Travmatologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
                     }
                     else if (selection == 3)
@@ -167,10 +168,10 @@ namespace ConsoleApp25
                             Console.WriteLine("Select time section -> |1| |2| |3|");
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
-                        } while (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Full"));
+                        } while (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
                         Console.ForegroundColor = ConsoleColor.Green;
                         string time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
-                        Stamotologiya.doctors[line].WorkTime[selecttime - 1] += " Full";
+                        Stamotologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
                         Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Stamotologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
                     }
                 }
