@@ -146,9 +146,7 @@ namespace ConsoleApp25
                         do
                         {
 
-                            Console.WriteLine("===================================");
-                            Console.WriteLine("Select time section -> |1| |2| |3|");
-                            Console.WriteLine("===================================");
+                            ShowTimeTableManagement();
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
                             time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
@@ -168,9 +166,7 @@ namespace ConsoleApp25
                         do
                         {
 
-                            Console.WriteLine("===================================");
-                            Console.WriteLine("Select time section -> |1| |2| |3|");
-                            Console.WriteLine("===================================");
+                            ShowTimeTableManagement();
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
                             time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
@@ -189,10 +185,8 @@ namespace ConsoleApp25
                         string time;
                         do
                         {
-                            
-                            Console.WriteLine("===================================");
-                            Console.WriteLine("Select time section -> |1| |2| |3|");
-                            Console.WriteLine("===================================");
+
+                            ShowTimeTableManagement();
                             selecttime = Convert.ToInt32(Console.ReadLine());
                             Console.ForegroundColor = ConsoleColor.Red;
                             time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
@@ -219,6 +213,12 @@ namespace ConsoleApp25
             Console.WriteLine("========================");
             Console.WriteLine("Stamotologiya 3");
             Console.WriteLine("========================");
+        }
+        public void ShowTimeTableManagement()
+        {
+            Console.WriteLine("===================================");
+            Console.WriteLine("Select time section -> |1| |2| |3|");
+            Console.WriteLine("===================================");
         }
     }
     class Program
