@@ -65,24 +65,6 @@ namespace ConsoleApp25
             Email = email;
             PhoneNumber = phoneNumber;
         }
-
-        //public User()
-        //{
-        //    Console.WriteLine("\n\n\n\n\n\n\n\n\t\t\t\t\t================================");
-        //    Console.Write("\t\t\t\t\tName ->");
-        //    Name = Console.ReadLine();
-        //    Console.WriteLine("\t\t\t\t\t================================");
-        //    Console.Write("\t\t\t\t\tSurname ->");
-        //    Surname = Console.ReadLine();
-        //    Console.WriteLine("\t\t\t\t\t================================");
-        //    Console.Write("\t\t\t\t\tEmail ->");
-        //    Email = Console.ReadLine();
-        //    Console.WriteLine("\t\t\t\t\t================================");
-        //    Console.Write("\t\t\t\t\tPhone Number ->");
-        //    PhoneNumber = Console.ReadLine();
-        //    Console.WriteLine("\t\t\t\t\t================================");
-        //    System.Threading.Thread.Sleep(2000); Console.Clear();
-        //}
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
     }
