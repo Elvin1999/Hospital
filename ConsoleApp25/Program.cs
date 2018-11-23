@@ -78,11 +78,13 @@ namespace ConsoleApp25
         public List<Doctor> doctors = new List<Doctor>();
         public void ShowAllDoctors()
         {
-            Console.ForegroundColor = ConsoleColor.Green;
+            
             int count = 0;
             foreach (var item in doctors)
             {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine($" ({++count}) LINE");
+                Console.ForegroundColor = ConsoleColor.Green;
                 item.ShowDoctors();
             }
         }
