@@ -78,7 +78,7 @@ namespace ConsoleApp25
         public List<Doctor> doctors = new List<Doctor>();
         public void ShowAllDoctors()
         {
-            
+
             int count = 0;
             foreach (var item in doctors)
             {
@@ -170,12 +170,18 @@ namespace ConsoleApp25
                 } while (!CheckPersonRegistration(name, surname, email, phonenumber));
                 Console.Clear();
                 userlist.Add(person);
-
-
-
                 ShowSectionOfHospital();
-                Console.Write("Select - >");
-                int selection = Convert.ToInt32(Console.ReadLine()); bool boolselection;
+                int selection = -1;
+                do
+                {
+                    Console.Write("Select - >");
+                    selection = Convert.ToInt32(Console.ReadLine());
+                    if (!(selection >= 1 && selection <= 3))
+                    {
+                        Console.WriteLine("You can select between 1-3");
+                    }
+                } while (!(selection >= 1 && selection <= 3));
+                bool boolselection;
                 Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Blue;
                 switch (selection)
@@ -210,13 +216,23 @@ namespace ConsoleApp25
                 if (boolselection)
                 {
                     int selecttime = 1;
-                    Console.WriteLine("=================================================");
-                    Console.WriteLine("Please write LINE of Doctor -> (for example 1,2,3) ->");
-                    Console.WriteLine("=================================================");
-                    int line = Convert.ToInt32(Console.ReadLine());
-                    --line;
+                    int line = 0;
+
                     if (selection == 1)//Pediatriya
                     {
+                        do
+                        {
+                            Console.WriteLine("=================================================");
+                            Console.WriteLine("Please write LINE of Doctor -> (for example 1,2,3) ->");
+                            Console.WriteLine("=================================================");
+                            line = Convert.ToInt32(Console.ReadLine());
+                            if(!(line >= 1 && line <= Pediatriya.doctors.Count))
+                            {
+                                Console.WriteLine($"We have only {Pediatriya.doctors.Count} doctors");
+                            }
+                        } while (!(line >= 1 && line <= Pediatriya.doctors.Count));
+                        
+                        --line;
                         string time;
                         do
                         {
@@ -225,7 +241,7 @@ namespace ConsoleApp25
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("=================================================================");
-                                Console.WriteLine($" {Pediatriya.doctors[line].Name} hekimin bu gun hech vaxti yoxdur");
+                                Console.WriteLine($" {Pediatriya.doctors[line].Name} doctor does not have time in this interval");
                                 Console.WriteLine("=================================================================");
                                 System.Threading.Thread.Sleep(1500);
                                 break;
@@ -238,7 +254,7 @@ namespace ConsoleApp25
                                 time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
                                 if (Pediatriya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
                                 {
-                                    Console.WriteLine($"{Pediatriya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
+                                    Console.WriteLine($"{Pediatriya.doctors[line].Name} doctor in this time {time} is already reserved ");
                                     System.Threading.Thread.Sleep(3000);
                                 }
                             }
@@ -249,13 +265,26 @@ namespace ConsoleApp25
                             Console.ForegroundColor = ConsoleColor.Green;
                             time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
                             Pediatriya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
-                            Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Pediatriya.doctors[line].Name} hekimin qebuluna yazildiniz");
+                            Console.WriteLine($"{person.Name}  {person.Surname} You were written to the doctor {Pediatriya.doctors[line].Name} queue\n in this time {time}  ");
                             System.Threading.Thread.Sleep(3000);
                         }
 
                     }
                     else if (selection == 2)
                     {
+                        do
+                        {
+                            Console.WriteLine("=================================================");
+                            Console.WriteLine("Please write LINE of Doctor -> (for example 1,2,3) ->");
+                            Console.WriteLine("=================================================");
+                            line = Convert.ToInt32(Console.ReadLine());
+                            if (!(line >= 1 && line <= Travmatologiya.doctors.Count))
+                            {
+                                Console.WriteLine($"We have only {Travmatologiya.doctors.Count} doctors");
+                            }
+                        } while (!(line >= 1 && line <= Travmatologiya.doctors.Count));
+
+                        --line;
                         string time;
                         do
                         {
@@ -264,7 +293,7 @@ namespace ConsoleApp25
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("=================================================================");
-                                Console.WriteLine($" {Travmatologiya.doctors[line].Name} hekimin bu gun hech vaxti yoxdur");
+                                Console.WriteLine($" {Travmatologiya.doctors[line].Name} doctor does not have time in this interval");
                                 Console.WriteLine("=================================================================");
                                 System.Threading.Thread.Sleep(3000);
                                 break;
@@ -277,7 +306,7 @@ namespace ConsoleApp25
                                 time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
                                 if (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
                                 {
-                                    Console.WriteLine($"{Travmatologiya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
+                                    Console.WriteLine($"{Travmatologiya.doctors[line].Name} doctor in this time {time} is already reserved");
                                     System.Threading.Thread.Sleep(3000);
                                 }
                             }
@@ -287,13 +316,25 @@ namespace ConsoleApp25
                             Console.ForegroundColor = ConsoleColor.Green;
                             time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
                             Travmatologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
-                            Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Travmatologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
+                            Console.WriteLine($"{person.Name}  {person.Surname} You were written to the doctor {Travmatologiya.doctors[line].Name} queue\n in this time {time}  ");
                             System.Threading.Thread.Sleep(3000);
                         }
 
                     }
                     else if (selection == 3)
                     {
+                        do
+                        {
+                            Console.WriteLine("=================================================");
+                            Console.WriteLine("Please write LINE of Doctor -> (for example 1,2,3) ->");
+                            Console.WriteLine("=================================================");
+                            line = Convert.ToInt32(Console.ReadLine());
+                            if (!(line >= 1 && line <= Stamotologiya.doctors.Count))
+                            {
+                                Console.WriteLine($"We have only {Stamotologiya.doctors.Count} doctors");
+                            }
+                        } while (!(line >= 1 && line <= Stamotologiya.doctors.Count));
+                        --line;
                         string time;
                         do
                         {
@@ -301,7 +342,7 @@ namespace ConsoleApp25
                             {
                                 Console.ForegroundColor = ConsoleColor.Red;
                                 Console.WriteLine("=================================================================");
-                                Console.WriteLine($" {Stamotologiya.doctors[line].Name} hekimin bu gun hech vaxti yoxdur");
+                                Console.WriteLine($" {Stamotologiya.doctors[line].Name} doctor does not have time in this interval");
                                 Console.WriteLine("=================================================================");
                                 System.Threading.Thread.Sleep(3000);
                                 break;
@@ -314,7 +355,7 @@ namespace ConsoleApp25
                                 time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
                                 if (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
                                 {
-                                    Console.WriteLine($"{Stamotologiya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
+                                    Console.WriteLine($"{Stamotologiya.doctors[line].Name} doctor in this time {time} is already reserved");
                                     System.Threading.Thread.Sleep(3000);
                                 }
                             }
@@ -324,7 +365,7 @@ namespace ConsoleApp25
                             Console.ForegroundColor = ConsoleColor.Green;
                             time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
                             Stamotologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
-                            Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Stamotologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
+                            Console.WriteLine($"{person.Name}  {person.Surname} You were written to the doctor {Stamotologiya.doctors[line].Name} queue \n in this time {time}  ");
                             System.Threading.Thread.Sleep(3000);
                         }
 
