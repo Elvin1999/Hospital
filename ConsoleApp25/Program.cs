@@ -24,19 +24,27 @@ namespace ConsoleApp25
         {
             "09:00 - 11:00","12:00 - 14:00","15:00 - 17:00"
         };
+        int checkcount;
+        public bool isFullOrEmpty;
         public void ShowDoctors()
         {
             Console.WriteLine($"Name -> {Name}");
             Console.WriteLine($"Surname -> {Surname}");
             Console.WriteLine($"Experience Year -> {ExperienceYear}");
-            Console.WriteLine("Worktime -> "); int count = 0; int checkcount = 0;
+            Console.WriteLine("Worktime -> "); int count = 0;
+            checkcount = 0;
             foreach (var item in WorkTime)
             {
                 var isFull = item.Contains("Reserved");
                 if (isFull)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red; checkcount++;
+                    Console.ForegroundColor = ConsoleColor.Red; ++checkcount;
                 }
+                if (checkcount == 3)
+                {
+                    checkcount = 0;
+                    isFullOrEmpty = true;
+                }                
                 Console.Write($" |{++count}| {item}");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine();
@@ -111,6 +119,7 @@ namespace ConsoleApp25
             Pediatriya.doctors.Add(John); Travmatologiya.doctors.Add(Ismayil); Stamotologiya.doctors.Add(Tofiq);
             while (true)
             {
+
                 ShowSectionOfHospital();
                 Console.Write("Select - >");
                 int selection = Convert.ToInt32(Console.ReadLine()); bool boolselection;
@@ -145,7 +154,7 @@ namespace ConsoleApp25
                 }
                 if (boolselection)
                 {
-                    int selecttime;
+                    int selecttime = 1;
                     Console.WriteLine("=================================================");
                     Console.WriteLine("Please write LINE of Doctor -> (for example 1,2,3) ->");
                     Console.WriteLine("=================================================");
@@ -156,19 +165,37 @@ namespace ConsoleApp25
                         string time;
                         do
                         {
-                            ShowTimeTableManagement();
-                            selecttime = Convert.ToInt32(Console.ReadLine());
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
-                            if (Pediatriya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
+
+                            if (Pediatriya.doctors[line].isFullOrEmpty)
                             {
-                                Console.WriteLine($"{Pediatriya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("=================================================================");
+                                Console.WriteLine($" {Pediatriya.doctors[line].Name} hekimin bu gun hech vaxti yoxdur");
+                                Console.WriteLine("=================================================================");
+                                System.Threading.Thread.Sleep(1500);
+                                break;
                             }
+                            else
+                            {
+                                ShowTimeTableManagement();
+                                selecttime = Convert.ToInt32(Console.ReadLine());
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
+                                if (Pediatriya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
+                                {
+                                    Console.WriteLine($"{Pediatriya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
+                                }
+                            }
+
                         } while (Pediatriya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
-                        Pediatriya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
-                        Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Pediatriya.doctors[line].Name} hekimin qebuluna yazildiniz");
+                        if (!Pediatriya.doctors[line].isFullOrEmpty)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
+                            Pediatriya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
+                            Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Pediatriya.doctors[line].Name} hekimin qebuluna yazildiniz");
+                        }
+
                     }
                     else if (selection == 2)
                     {
@@ -176,38 +203,70 @@ namespace ConsoleApp25
                         do
                         {
 
-                            ShowTimeTableManagement();
-                            selecttime = Convert.ToInt32(Console.ReadLine());
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
-                            if (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
+                            if (Travmatologiya.doctors[line].isFullOrEmpty)
                             {
-                                Console.WriteLine($"{Travmatologiya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("=================================================================");
+                                Console.WriteLine($" {Travmatologiya.doctors[line].Name} hekimin bu gun hech vaxti yoxdur");
+                                Console.WriteLine("=================================================================");
+                                System.Threading.Thread.Sleep(1500);
+                                break;
+                            }
+                            else
+                            {
+                                ShowTimeTableManagement();
+                                selecttime = Convert.ToInt32(Console.ReadLine());
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
+                                if (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
+                                {
+                                    Console.WriteLine($"{Travmatologiya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
+                                }
                             }
                         } while (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
-                        Travmatologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
-                        Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Travmatologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
+                        if (!Travmatologiya.doctors[line].isFullOrEmpty)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
+                            Travmatologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
+                            Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Travmatologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
+                        }
+
                     }
                     else if (selection == 3)
                     {
                         string time;
                         do
                         {
-                            ShowTimeTableManagement();
-                            selecttime = Convert.ToInt32(Console.ReadLine());
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
-                            if (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
+                            if (Stamotologiya.doctors[line].isFullOrEmpty)
                             {
-                                Console.WriteLine($"{Stamotologiya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine("=================================================================");
+                                Console.WriteLine($" {Stamotologiya.doctors[line].Name} hekimin bu gun hech vaxti yoxdur");
+                                Console.WriteLine("=================================================================");
+                                System.Threading.Thread.Sleep(1500);
+                                break;
+                            }
+                            else
+                            {
+                                ShowTimeTableManagement();
+                                selecttime = Convert.ToInt32(Console.ReadLine());
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
+                                if (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
+                                {
+                                    Console.WriteLine($"{Stamotologiya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
+                                }
                             }
                         } while (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
-                        Console.ForegroundColor = ConsoleColor.Green;
-                        time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
-                        Stamotologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
-                        Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Stamotologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
+                        if (!Stamotologiya.doctors[line].isFullOrEmpty)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
+                            Stamotologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
+                            Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Stamotologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
+                        }
+
                     }
                 }
             }
@@ -223,7 +282,7 @@ namespace ConsoleApp25
             Console.WriteLine("Stamotologiya 3");
             Console.WriteLine("========================");
         }
-        public void ShowTimeTableManagement()   
+        public void ShowTimeTableManagement()
         {
             Console.WriteLine("===================================");
             Console.WriteLine("Select time section -> |1| |2| |3|");
