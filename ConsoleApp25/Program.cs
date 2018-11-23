@@ -145,40 +145,43 @@ namespace ConsoleApp25
         /// </summary>
         public void Run()
         {
+
             Console.ForegroundColor = ConsoleColor.Green;
             User person = new User(); string name, surname, email, phonenumber;
-            do
-            {
-                Console.Clear();
-                Console.WriteLine("\n\n\n\n\n\n\n\n\t\t\t\t\t================================");
-                Console.Write("\t\t\t\t\tName ->");
-                name = Console.ReadLine();
-                Console.WriteLine("\t\t\t\t\t================================");
-                Console.Write("\t\t\t\t\tSurname ->");
-                surname = Console.ReadLine();
-                Console.WriteLine("\t\t\t\t\t================================");
-                Console.Write("\t\t\t\t\tEmail ->");
-                email = Console.ReadLine();
-                Console.WriteLine("\t\t\t\t\t================================");
-                Console.Write("\t\t\t\t\tPhone Number ->");
-                phonenumber = Console.ReadLine();
-                Console.WriteLine("\t\t\t\t\t================================");
-                if (!CheckPersonRegistration(name, surname, email, phonenumber))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    System.Threading.Thread.Sleep(2000);
-                }
-                else
-                {
-                    person = new User(name,surname,email,phonenumber);
-                }
-            } while (!CheckPersonRegistration(name, surname, email, phonenumber));
-            Console.Clear();
-            userlist.Add(person);
             Pediatriya.doctors.Add(Elvin); Travmatologiya.doctors.Add(Samir); Stamotologiya.doctors.Add(Anar);
             Pediatriya.doctors.Add(John); Travmatologiya.doctors.Add(Ismayil); Stamotologiya.doctors.Add(Tofiq);
             while (true)
             {
+                do
+                {
+                    Console.Clear();
+                    Console.WriteLine("\n\n\n\n\n\n\n\n\t\t\t\t\t================================");
+                    Console.Write("\t\t\t\t\tName ->");
+                    name = Console.ReadLine();
+                    Console.WriteLine("\t\t\t\t\t================================");
+                    Console.Write("\t\t\t\t\tSurname ->");
+                    surname = Console.ReadLine();
+                    Console.WriteLine("\t\t\t\t\t================================");
+                    Console.Write("\t\t\t\t\tEmail ->");
+                    email = Console.ReadLine();
+                    Console.WriteLine("\t\t\t\t\t================================");
+                    Console.Write("\t\t\t\t\tPhone Number ->");
+                    phonenumber = Console.ReadLine();
+                    Console.WriteLine("\t\t\t\t\t================================");
+                    if (!CheckPersonRegistration(name, surname, email, phonenumber))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        System.Threading.Thread.Sleep(2000);
+                    }
+                    else
+                    {
+                        person = new User(name, surname, email, phonenumber);
+                    }
+                } while (!CheckPersonRegistration(name, surname, email, phonenumber));
+                Console.Clear();
+                userlist.Add(person);
+
+
 
                 ShowSectionOfHospital();
                 Console.Write("Select - >");
@@ -244,6 +247,7 @@ namespace ConsoleApp25
                                 if (Pediatriya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
                                 {
                                     Console.WriteLine($"{Pediatriya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
+                                    System.Threading.Thread.Sleep(2000);
                                 }
                             }
 
@@ -254,6 +258,7 @@ namespace ConsoleApp25
                             time = Pediatriya.doctors[line].WorkTime[selecttime - 1];
                             Pediatriya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
                             Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Pediatriya.doctors[line].Name} hekimin qebuluna yazildiniz");
+                            System.Threading.Thread.Sleep(2000);
                         }
 
                     }
@@ -269,7 +274,7 @@ namespace ConsoleApp25
                                 Console.WriteLine("=================================================================");
                                 Console.WriteLine($" {Travmatologiya.doctors[line].Name} hekimin bu gun hech vaxti yoxdur");
                                 Console.WriteLine("=================================================================");
-                                System.Threading.Thread.Sleep(1500);
+                                System.Threading.Thread.Sleep(2000);
                                 break;
                             }
                             else
@@ -281,6 +286,7 @@ namespace ConsoleApp25
                                 if (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
                                 {
                                     Console.WriteLine($"{Travmatologiya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
+                                    System.Threading.Thread.Sleep(2000);
                                 }
                             }
                         } while (Travmatologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
@@ -290,6 +296,7 @@ namespace ConsoleApp25
                             time = Travmatologiya.doctors[line].WorkTime[selecttime - 1];
                             Travmatologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
                             Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Travmatologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
+                            System.Threading.Thread.Sleep(2000);
                         }
 
                     }
@@ -304,7 +311,7 @@ namespace ConsoleApp25
                                 Console.WriteLine("=================================================================");
                                 Console.WriteLine($" {Stamotologiya.doctors[line].Name} hekimin bu gun hech vaxti yoxdur");
                                 Console.WriteLine("=================================================================");
-                                System.Threading.Thread.Sleep(1500);
+                                System.Threading.Thread.Sleep(2000);
                                 break;
                             }
                             else
@@ -316,6 +323,7 @@ namespace ConsoleApp25
                                 if (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"))
                                 {
                                     Console.WriteLine($"{Stamotologiya.doctors[line].Name} hekimin {time} vaxti artiq rezerv olunub");
+                                    System.Threading.Thread.Sleep(2000);
                                 }
                             }
                         } while (Stamotologiya.doctors[line].WorkTime[selecttime - 1].Contains("Reserved"));
@@ -325,6 +333,7 @@ namespace ConsoleApp25
                             time = Stamotologiya.doctors[line].WorkTime[selecttime - 1];
                             Stamotologiya.doctors[line].WorkTime[selecttime - 1] += " Reserved";
                             Console.WriteLine($" {person.Name}  {person.Surname} siz saat {time} de {Stamotologiya.doctors[line].Name} hekimin qebuluna yazildiniz");
+                            System.Threading.Thread.Sleep(2000);
                         }
 
                     }
