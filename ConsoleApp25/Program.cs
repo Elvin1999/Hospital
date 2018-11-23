@@ -44,7 +44,7 @@ namespace ConsoleApp25
                 {
                     checkcount = 0;
                     isFullOrEmpty = true;
-                }                
+                }
                 Console.Write($" |{++count}| {item}");
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine();
@@ -55,21 +55,34 @@ namespace ConsoleApp25
     {
         public User()
         {
-            Console.WriteLine("\n\n\n\n\n\n\n\n\t\t\t\t\t================================");
-            Console.Write("\t\t\t\t\tName ->");
-            Name = Console.ReadLine();
-            Console.WriteLine("\t\t\t\t\t================================");
-            Console.Write("\t\t\t\t\tSurname ->");
-            Surname = Console.ReadLine();
-            Console.WriteLine("\t\t\t\t\t================================");
-            Console.Write("\t\t\t\t\tEmail ->");
-            Email = Console.ReadLine();
-            Console.WriteLine("\t\t\t\t\t================================");
-            Console.Write("\t\t\t\t\tPhone Number ->");
-            PhoneNumber = Console.ReadLine();
-            Console.WriteLine("\t\t\t\t\t================================");
-            System.Threading.Thread.Sleep(2000); Console.Clear();
+
         }
+
+        public User(string name, string surname, string email, string phoneNumber)
+        {
+            Name = name;
+            Surname = surname;
+            Email = email;
+            PhoneNumber = phoneNumber;
+        }
+
+        //public User()
+        //{
+        //    Console.WriteLine("\n\n\n\n\n\n\n\n\t\t\t\t\t================================");
+        //    Console.Write("\t\t\t\t\tName ->");
+        //    Name = Console.ReadLine();
+        //    Console.WriteLine("\t\t\t\t\t================================");
+        //    Console.Write("\t\t\t\t\tSurname ->");
+        //    Surname = Console.ReadLine();
+        //    Console.WriteLine("\t\t\t\t\t================================");
+        //    Console.Write("\t\t\t\t\tEmail ->");
+        //    Email = Console.ReadLine();
+        //    Console.WriteLine("\t\t\t\t\t================================");
+        //    Console.Write("\t\t\t\t\tPhone Number ->");
+        //    PhoneNumber = Console.ReadLine();
+        //    Console.WriteLine("\t\t\t\t\t================================");
+        //    System.Threading.Thread.Sleep(2000); Console.Clear();
+        //}
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
     }
@@ -98,14 +111,34 @@ namespace ConsoleApp25
         Section Pediatriya = new Section();
         Section Travmatologiya = new Section();
         Section Stamotologiya = new Section();
-        public bool CheckPersonRegistration(User person)
+        public bool CheckPersonRegistration(string Name, string Surname, string Email, string PhoneNumber)
         {
-            var checkName = string.IsNullOrEmpty(person.Name);
-            var checkSurname = string.IsNullOrEmpty(person.Surname);
-            var checkMail = person.Email.Length;
-            var checkPhoneNumber = int.TryParse(person.PhoneNumber, out int result);
-            if (!checkName && !checkSurname && checkMail > 10 && checkPhoneNumber) return true;
-            return false;
+            var checkName = string.IsNullOrEmpty(Name);
+            var checkSurname = string.IsNullOrEmpty(Surname);
+            var checkMail = Email.Length;
+            var checkPhoneNumber = int.TryParse(PhoneNumber, out int result);
+            if (checkName)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\t\t\t\t\tThere is a problem in your name"); return false;
+            }
+            else if (checkSurname)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\t\t\t\t\tThere is a problem in your surname"); return false;
+            }
+            else if (checkMail < 10)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\t\t\t\t\tThere is a problem in your mail,Mail letters count must be greater than 10"); return false;
+            }
+            else if (!checkPhoneNumber)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("\t\t\t\t\tPhoneNumber must be only digit"); return false;
+            }
+
+            return true;
         }
         /// <summary>
         /// All things happen here.
@@ -113,7 +146,31 @@ namespace ConsoleApp25
         public void Run()
         {
             Console.ForegroundColor = ConsoleColor.Green;
-            User person = new User();
+            User person = new User(); string name, surname, email, phonenumber;
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("\n\n\n\n\n\n\n\n\t\t\t\t\t================================");
+                Console.Write("\t\t\t\t\tName ->");
+                name = Console.ReadLine();
+                Console.WriteLine("\t\t\t\t\t================================");
+                Console.Write("\t\t\t\t\tSurname ->");
+                surname = Console.ReadLine();
+                Console.WriteLine("\t\t\t\t\t================================");
+                Console.Write("\t\t\t\t\tEmail ->");
+                email = Console.ReadLine();
+                Console.WriteLine("\t\t\t\t\t================================");
+                Console.Write("\t\t\t\t\tPhone Number ->");
+                phonenumber = Console.ReadLine();
+                Console.WriteLine("\t\t\t\t\t================================");
+                if (!CheckPersonRegistration(name, surname, email, phonenumber))
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    System.Threading.Thread.Sleep(2000);
+                }
+
+            } while (!CheckPersonRegistration(name, surname, email, phonenumber));
+
             userlist.Add(person);
             Pediatriya.doctors.Add(Elvin); Travmatologiya.doctors.Add(Samir); Stamotologiya.doctors.Add(Anar);
             Pediatriya.doctors.Add(John); Travmatologiya.doctors.Add(Ismayil); Stamotologiya.doctors.Add(Tofiq);
