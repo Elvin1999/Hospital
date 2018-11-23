@@ -168,9 +168,12 @@ namespace ConsoleApp25
                     Console.ForegroundColor = ConsoleColor.Red;
                     System.Threading.Thread.Sleep(2000);
                 }
-
+                else
+                {
+                    person = new User(name,surname,email,phonenumber);
+                }
             } while (!CheckPersonRegistration(name, surname, email, phonenumber));
-
+            Console.Clear();
             userlist.Add(person);
             Pediatriya.doctors.Add(Elvin); Travmatologiya.doctors.Add(Samir); Stamotologiya.doctors.Add(Anar);
             Pediatriya.doctors.Add(John); Travmatologiya.doctors.Add(Ismayil); Stamotologiya.doctors.Add(Tofiq);
