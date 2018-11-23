@@ -226,12 +226,22 @@ namespace ConsoleApp25
                             Console.WriteLine("Please write LINE of Doctor -> (for example 1,2,3) ->");
                             Console.WriteLine("=================================================");
                             line = Convert.ToInt32(Console.ReadLine());
-                            if(!(line >= 1 && line <= Pediatriya.doctors.Count))
+                            try
                             {
-                                Console.WriteLine($"We have only {Pediatriya.doctors.Count} doctors");
+                                if (!(line >= 1 && line <= Pediatriya.doctors.Count))
+                                {
+                                    throw new Exception($"We have only {Pediatriya.doctors.Count} doctors");
+                                }
                             }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(ex.Message);
+                                Console.ForegroundColor = ConsoleColor.Green;
+                            }
+
                         } while (!(line >= 1 && line <= Pediatriya.doctors.Count));
-                        
+
                         --line;
                         string time;
                         do
@@ -278,10 +288,20 @@ namespace ConsoleApp25
                             Console.WriteLine("Please write LINE of Doctor -> (for example 1,2,3) ->");
                             Console.WriteLine("=================================================");
                             line = Convert.ToInt32(Console.ReadLine());
-                            if (!(line >= 1 && line <= Travmatologiya.doctors.Count))
+                            try
                             {
-                                Console.WriteLine($"We have only {Travmatologiya.doctors.Count} doctors");
+                                if (!(line >= 1 && line <= Travmatologiya.doctors.Count))
+                                {
+                                    throw new Exception($"We have only {Travmatologiya.doctors.Count} doctors");
+                                }
                             }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(ex.Message);
+                                Console.ForegroundColor = ConsoleColor.Green;
+                            }
+
                         } while (!(line >= 1 && line <= Travmatologiya.doctors.Count));
 
                         --line;
@@ -329,10 +349,20 @@ namespace ConsoleApp25
                             Console.WriteLine("Please write LINE of Doctor -> (for example 1,2,3) ->");
                             Console.WriteLine("=================================================");
                             line = Convert.ToInt32(Console.ReadLine());
-                            if (!(line >= 1 && line <= Stamotologiya.doctors.Count))
+                            try
                             {
-                                Console.WriteLine($"We have only {Stamotologiya.doctors.Count} doctors");
+                                if (!(line >= 1 && line <= Stamotologiya.doctors.Count))
+                                {
+                                    throw new Exception($"We have only {Stamotologiya.doctors.Count} doctors");
+                                }
                             }
+                            catch (Exception ex)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(ex.Message);
+                                Console.ForegroundColor = ConsoleColor.Green;
+                            }
+
                         } while (!(line >= 1 && line <= Stamotologiya.doctors.Count));
                         --line;
                         string time;
